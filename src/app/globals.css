@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #c8ff00;
+  --accent2: #ff4d6d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #080808;
+  color: #f0f0f0;
+  font-family: 'Space Mono', monospace;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,...");
+  pointer-events: none;
+  z-index: -1;   /* เปลี่ยนจาก 1 เป็น -1 */
+  opacity: 0.4;
+}
+
+/* Custom cursor */
+.cursor {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  background: #c8ff00;
+  border-radius: 50%;
+  pointer-events: none !important;  /* เพิ่ม !important */
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+
+.cursor-trail {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #c8ff00;
+  border-radius: 50%;
+  pointer-events: none !important;  /* เพิ่ม !important */
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: left 0.12s ease, top 0.12s ease, transform 0.2s ease;
+  opacity: 0.5;
+}
+
+/* Ensure links are clickable */
+a, button {
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 10000 !important;  /* สูงกว่า cursor (9999) */
+}
+
+/* Hero grid background */
+.hero-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Line reveal animation */
+.line-wrap {
+  overflow: hidden;
+}
+
+.line-reveal {
+  display: block;
+  opacity: 0;
+  transform: translateY(110%);
+  animation: revealLine 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.4s; }
+.delay-2 { animation-delay: 0.55s; }
+.delay-3 { animation-delay: 0.7s; }
+.delay-4 { animation-delay: 0.85s; }
+.delay-5 { animation-delay: 1s; }
+.delay-6 { animation-delay: 1.15s; }
+
+@keyframes revealLine {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade up */
+.fade-up {
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Scroll line */
+@keyframes scrollLine {
+  0%   { transform: scaleY(0); transform-origin: top; }
+  50%  { transform: scaleY(1); transform-origin: top; }
+  51%  { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+.scroll-line-anim {
+  animation: scrollLine 2s 2s infinite;
+}
+
+/* Pulse dot */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.8); }
+}
+
+.pulse-dot {
+  animation: pulseDot 2s infinite;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 18s linear infinite;
+}
+
+/* Slide down nav */
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+.nav-anim {
+  animation: slideDown 0.6s ease forwards;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  pointer-events: none; /* เพิ่มบรรทัดนี้ */
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto; /* เพิ่มบรรทัดนี้ */
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* Skill card bottom border */
+.skill-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  height: 2px; width: 0;
+  background: #c8ff00;
+  transition: width 0.4s ease;
+}
+
+.skill-card:hover::before {
+  width: 100%;
+}
+
+/* Project item fill */
+.project-item::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  background: rgba(200,255,0,0.04);
+  transition: width 0.4s ease;
+}
+
+.project-item:hover::after {
+  width: 100%;
+}
