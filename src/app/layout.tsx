@@ -15,7 +15,7 @@ const syne = Syne({
 })
 
 export const metadata: Metadata = {
-  title: 'Alex Chen — Full Stack Developer',
+  title: 'Jeep — Full Stack Developer',
   description: 'Full Stack Developer building fast, scalable web applications.',
 }
 
