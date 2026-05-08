@@ -15,8 +15,47 @@ const syne = Syne({
 })
 
 export const metadata: Metadata = {
-  title: 'Pangki — Full Stack Developer',
-  description: 'Full Stack Developer building fast, scalable web applications.',
+  metadataBase: new URL('https://pangki.dev'),
+  title: {
+    default: 'Pangki — Full Stack Developer | pangki.dev',
+    template: '%s | Pangki',
+  },
+  description: 'Pangki (Supawat Khaithong) — Full Stack Developer specializing in Next.js, React, and TypeScript. Building fast, scalable web applications. View projects and get in touch.',
+  keywords: [
+    'Pangki', 'pangki.dev', 'Pangki developer', 'Pangki Full Stack',
+    'Supawat Khaithong', 'Full Stack Developer', 'Web Developer',
+    'Next.js developer', 'React developer', 'TypeScript developer',
+    'freelance developer', 'Thailand developer', 'Khon Kaen University',
+  ],
+  authors: [{ name: 'Pangki', url: 'https://pangki.dev' }],
+  creator: 'Pangki',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://pangki.dev',
+    siteName: 'Pangki — Full Stack Developer',
+    title: 'Pangki — Full Stack Developer',
+    description: 'Full Stack Developer specializing in Next.js, React, and TypeScript. Building fast, scalable web applications.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Pangki — Full Stack Developer',
+    description: 'Full Stack Developer specializing in Next.js, React, and TypeScript. Building fast, scalable web applications.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://pangki.dev',
+  },
 }
 
 export default function RootLayout({
