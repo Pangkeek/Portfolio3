@@ -3,24 +3,24 @@ import ScrollReveal from './ScrollReveal'
 const projects = [
   {
     num: '01',
+    name: 'Porta-Kamp',
+    desc: 'A corporate website for Porta-Kamp Houston — a company with 70 years pioneering modular and prefabricated structures worldwide. Features service showcases, a project gallery, contact forms with email integration, and fully SEO-optimized pages with a premium forest green and gold design.',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Resend', 'Vercel'],
+    link: 'https://www.portakamp.com/',
+  },
+  {
+    num: '02',
     name: 'MorseType',
     desc: 'A typing practice app inspired by Monkey Type, but for Morse code. Players tap out Morse sequences and get scored on speed and accuracy. Features real-time performance tracking, player statistics, and a live leaderboard so users can compete and climb the ranks. Fully interactive and responsive across devices.',
     stack: ['Next.js', 'JavaScript', 'Tailwind CSS','Prisma','postgresql','railway'],
     link: 'https://morsecode2.up.railway.app/',
   },
   {
-    num: '02',
+    num: '03',
     name: "Kelly Tarlton's",
     desc: "A landing page for a mobile app featuring immersive scroll-based animations. Designed to showcase the app's features through smooth, cinematic transitions as the user scrolls — giving the page a rich, storytelling feel that mirrors the mobile experience.",
     stack: ['React', 'JavaScript', 'Tailwind CSS','Framer Motion','Github pages'],
     link: 'https://pangkeek.github.io/Kelly_Tarlton.github.io/',
-  },
-  {
-    num: '03',
-    name: 'SpinStats',
-    desc: 'A mobile app that tracks sports statistics in real-time, allowing coaches and players to monitor performance during games. Features live scoring, team management, and detailed analytics to help improve training and strategy.',
-    stack: ['React', 'TypeScript', 'Firebase'],
-    link: 'https://slotmachinesim.vercel.app/',
   },
   {
     num: '04',
@@ -59,6 +59,8 @@ export default function Projects() {
             <a
               key={p.num}
               href={p.link}
+              target="_blank"
+              rel="noopener noreferrer"
               className="project-item relative grid grid-cols-[auto_1fr_auto] items-center gap-8 bg-[#080808] p-10 transition-colors duration-300 hover:bg-[#111] cursor-none overflow-hidden group no-underline"
             >
               <div className="text-[0.7rem] text-[#555] tracking-wider relative z-10">{p.num}</div>

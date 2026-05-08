@@ -8,7 +8,7 @@ export default function Nav() {
   return (
     <nav className="nav-anim fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-12 py-6 border-b border-[#1e1e1e] bg-[rgba(8,8,8,0.85)] backdrop-blur-xl">
       <div className="font-[family-name:var(--font-display)] font-extrabold text-lg tracking-tight text-[#c8ff00]">
-        JEEP.
+        PANGKI.
       </div>
 
       <ul className="hidden md:flex gap-8 list-none">

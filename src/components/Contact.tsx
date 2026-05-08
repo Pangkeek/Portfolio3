@@ -133,6 +133,8 @@ export default function Contact() {
                 <a
                   key={l.label}
                   href={l.href}
+                  target={l.href.startsWith('http') ? "_blank" : undefined}
+                  rel={l.href.startsWith('http') ? "noopener noreferrer" : undefined}
                   className="flex items-center gap-4 text-sm text-white px-4 py-4 border border-[#1e1e1e] transition-all duration-300 hover:border-[#c8ff00] hover:text-[#c8ff00] no-underline"
                 >
                   <span className="w-5 text-center">{l.icon}</span>

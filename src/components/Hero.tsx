@@ -3,9 +3,9 @@
 import { useEffect, useRef } from 'react'
 
 const stats = [
-  { num: 11, label: 'Projects' },
-  { num: 3,  label: 'Years Exp.' },
-  { num: 0, label: 'Clients' },
+  { num: 13, label: 'Projects' },
+  { num: 3, label: 'Years Exp.' },
+  { num: 3, label: 'Clients' },
 ]
 
 function countUp(el: HTMLSpanElement, target: number, duration = 1500) {
@@ -62,7 +62,7 @@ export default function Hero() {
         {/* Title */}
         <h1 className="font-[family-name:var(--font-display)] text-[clamp(4rem,10vw,9rem)] font-extrabold leading-[0.9] tracking-[-0.04em] mb-10">
           <div className="line-wrap"><span className="line-reveal delay-2 relative">
-            Jeep
+            Pangki
           </span></div>
           <div className="line-wrap"><span className="line-reveal delay-3">Full Stack</span></div>
           <div className="line-wrap"><span className="line-reveal delay-5 text-[#c8ff00]">Dev.</span></div>
