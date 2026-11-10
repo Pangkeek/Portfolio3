@@ -154,66 +154,67 @@
         "Vercel"
       ],
       "link": "https://www.portakamp.com/",
-      "github": "https://github.com/Pangkeek"
+      "github": "https://github.com/Pangkeek/portakamp"
     },
     {
       "id": "proj-2",
       "num": "02",
-      "name": "MorseType",
-      "desc": "A typing practice app inspired by Monkey Type, but for Morse code. Players tap out Morse sequences and get scored on speed and accuracy. Features real-time performance tracking, player statistics, and a live leaderboard so users can compete and climb the ranks. Fully interactive and responsive across devices.",
+      "name": "Ai_Chatbot_SMBS2",
+      "desc": "An AI Chatbot application for SMBS built with Next.js, TypeScript, and OpenAI API, featuring intelligent chat responses, interactive conversational UI, and seamless deployment on Vercel.",
       "stack": [
         "Next.js",
-        "JavaScript",
         "Tailwind CSS",
-        "Prisma",
-        "postgresql",
-        "railway"
+        "TypeScript",
+        "OpenAI",
+        "Vercel"
       ],
-      "link": "https://morsecode2.up.railway.app/",
-      "github": "https://github.com/Pangkeek"
+      "link": "https://ai-chatbot-smbs-2.vercel.app/",
+      "github": "https://github.com/Pangkeek/Ai_Chatbot_SMBS2"
     },
     {
       "id": "proj-3",
       "num": "03",
-      "name": "Kelly Tarlton's",
-      "desc": "A landing page for a mobile app featuring immersive scroll-based animations. Designed to showcase the app's features through smooth, cinematic transitions as the user scrolls — giving the page a rich, storytelling feel that mirrors the mobile experience.",
+      "name": "Ecommerce_one",
+      "desc": "A bilingual premium soap storefront built with Next.js, TypeScript, Tailwind CSS, shadcn-style controls, Supabase, and animated editorial UI with Stripe checkout integration.",
       "stack": [
-        "React",
-        "JavaScript",
         "Tailwind CSS",
-        "Framer Motion",
-        "Github pages"
+        "Next.js",
+        "TypeScript",
+        "Supabase",
+        "Stripe"
       ],
-      "link": "https://pangkeek.github.io/Kelly_Tarlton.github.io/",
-      "github": "https://github.com/Pangkeek/Kelly_Tarlton.github.io"
+      "link": "https://fontend-e-commerce.vercel.app/",
+      "github": "https://github.com/Pangkeek/Ecommerce_one"
     },
     {
       "id": "proj-4",
       "num": "04",
-      "name": "ShopFlow",
-      "desc": "A slot machine game with a twist — every spin is tracked. Players can pull the lever and watch the reels, while the app records win rates, spin history, and payout stats in real time. Turns a simple game into a data-driven experience.",
+      "name": "LostStuff2",
+      "desc": "A university campus Lost and Found management platform built with Supabase authentication, database storage, image uploads, and OWASP workflow controls to report and claim lost items.",
       "stack": [
-        "Next.js",
-        "JavaScript",
         "Tailwind CSS",
-        "chart.js",
-        "vercel"
+        "React",
+        "TypeScript",
+        "Supabase",
+        "Vite"
       ],
-      "link": "https://fontend-e-commerce.vercel.app/",
-      "github": "https://github.com/Pangkeek"
+      "link": "https://github.com/MyGe362785/LostStuff2",
+      "github": "https://github.com/MyGe362785/LostStuff2"
     },
     {
       "id": "proj-5",
       "num": "05",
-      "name": "Portfolio",
-      "desc": "A personal developer portfolio showcasing projects, skills, and experience. Built with a clean, responsive layout that adapts beautifully across mobile, tablet, and desktop — giving visitors a smooth and professional browsing experience.",
+      "name": "CourseHub",
+      "desc": "CourseHub — An online course recommendation and review platform for university students, featuring multi-platform course aggregation, custom matcher scoring algorithms, and review moderation.",
       "stack": [
-        "React",
-        "JavaScript",
-        "Tailwind CSS"
+        "Tailwind CSS",
+        "Next.js",
+        "TypeScript",
+        "Spring Boot",
+        "PostgreSQL"
       ],
-      "link": "https://portfolio2-sigma-eight.vercel.app/",
-      "github": "https://github.com/Pangkeek"
+      "link": "https://group36-coursehub.vercel.app",
+      "github": "https://github.com/poohlikung/GROUP36_CourseRecommend"
     }
   ]
 }
