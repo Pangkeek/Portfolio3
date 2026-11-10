@@ -1,12 +1,14 @@
-import Cursor     from '@/components/Cursor'
-import Nav        from '@/components/Nav'
-import Hero       from '@/components/Hero'
-import Marquee    from '@/components/Marquee'
-import Skills     from '@/components/Skills'
-import Projects   from '@/components/Projects'
-import Experience from '@/components/Experience'
-import Contact    from '@/components/Contact'
-import Footer     from '@/components/Footer'
+import Cursor   from '@/components/Cursor'
+import Nav      from '@/components/Nav'
+import Hero     from '@/components/Hero'
+import Marquee  from '@/components/Marquee'
+import Skills   from '@/components/Skills'
+import Projects from '@/components/Projects'
+import Contact  from '@/components/Contact'
+import Footer   from '@/components/Footer'
+import { getPortfolioData } from '@/lib/portfolio'
+
+export const dynamic = 'force-dynamic'
 
 const jsonLd = {
   '@context': 'https://schema.org',
@@ -32,7 +34,9 @@ const jsonLd = {
   ],
 }
 
-export default function Home() {
+export default async function Home() {
+  const data = await getPortfolioData()
+
   return (
     <>
       <script
@@ -42,14 +46,13 @@ export default function Home() {
       <Cursor />
       <Nav />
       <main>
-        <Hero />
-        <Marquee />
-        <Skills />
-        <Projects />
-        {/* <Experience /> */}
-        <Contact />
+        <Hero metrics={data.metrics} heroInfo={data.info.hero} />
+        <Marquee techs={data.info.marquee} />
+        <Skills skills={data.info.skills} />
+        <Projects projects={data.projects} />
+        <Contact contactInfo={data.info.contact} />
       </main>
-      <Footer />
+      <Footer copyright={data.info.footer.copyright} />
     </>
   )
 }

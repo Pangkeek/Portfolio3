@@ -1,10 +1,8 @@
-const techs = [
-  'React', 'Next.js', 'JavaScript', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Railway',
-  'Framer Motion', 'Github pages', 'chart.js', 'Vercel', 'Node.js', 'Express',
-  'MongoDB', 'Github actions','ESLint', 'Prettier'
-]
+interface MarqueeProps {
+  techs: string[]
+}
 
-export default function Marquee() {
+export default function Marquee({ techs }: MarqueeProps) {
   const doubled = [...techs, ...techs]
 
   return (

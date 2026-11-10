@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import ScrollReveal from './ScrollReveal'
+import type { ContactInfo } from '@/lib/portfolio'
 
 interface FormData {
   name: string
@@ -16,59 +17,55 @@ interface FormState {
   error: string | null
 }
 
-const links = [
-  { icon: '✉', label: 'supawatkhaithong@gmail.com',        href: 'mailto:supawatkhaithong@gmail.com' },
-  { icon: '⬡', label: 'github.com/Pangkeek',      href: 'https://github.com/Pangkeek' },
-  { icon: '◈', label: 'linkedin.com/in/supawat-khaithong-11bb533b5/', href: 'https://www.linkedin.com/in/supawat-khaithong-11bb533b5/' },
-]
+interface ContactProps {
+  contactInfo: ContactInfo
+}
 
-export default function Contact() {
+export default function Contact({ contactInfo }: ContactProps) {
   const [formState, setFormState] = useState<FormState>({
     data: {
       name: '',
       email: '',
-      message: ''
+      message: '',
     },
     isSubmitting: false,
     submitted: false,
-    error: null
+    error: null,
   })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormState(prev => ({
+    setFormState((prev) => ({
       ...prev,
       data: {
         ...prev.data,
-        [name]: value
+        [name]: value,
       },
-      error: null // Clear error when user starts typing
+      error: null,
     }))
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    // Validate form
+
     if (!formState.data.name || !formState.data.email || !formState.data.message) {
-      setFormState(prev => ({
+      setFormState((prev) => ({
         ...prev,
-        error: 'Please fill in all fields'
+        error: 'Please fill in all fields',
       }))
       return
     }
 
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(formState.data.email)) {
-      setFormState(prev => ({
+      setFormState((prev) => ({
         ...prev,
-        error: 'Please enter a valid email address'
+        error: 'Please enter a valid email address',
       }))
       return
     }
 
-    setFormState(prev => ({ ...prev, isSubmitting: true, error: null }))
+    setFormState((prev) => ({ ...prev, isSubmitting: true, error: null }))
 
     try {
       const response = await fetch('/api/send-email', {
@@ -86,25 +83,24 @@ export default function Contact() {
           data: { name: '', email: '', message: '' },
           isSubmitting: false,
           submitted: true,
-          error: null
+          error: null,
         })
-        
-        // Reset success message after 5 seconds
+
         setTimeout(() => {
-          setFormState(prev => ({ ...prev, submitted: false }))
+          setFormState((prev) => ({ ...prev, submitted: false }))
         }, 5000)
       } else {
-        setFormState(prev => ({
+        setFormState((prev) => ({
           ...prev,
           isSubmitting: false,
-          error: result.error || 'Failed to send message'
+          error: result.error || 'Failed to send message',
         }))
       }
-    } catch (error) {
-      setFormState(prev => ({
+    } catch {
+      setFormState((prev) => ({
         ...prev,
         isSubmitting: false,
-        error: 'Network error. Please try again.'
+        error: 'Network error. Please try again.',
       }))
     }
   }
@@ -122,19 +118,19 @@ export default function Contact() {
           {/* Left */}
           <ScrollReveal>
             <h2 className="font-[family-name:var(--font-display)] text-[clamp(2.5rem,5vw,4.5rem)] font-extrabold tracking-[-0.04em] leading-none mb-6">
-              Let&apos;s build<br />something{' '}
-              <span className="text-[#c8ff00]">great.</span>
+              {contactInfo.headingLine1}
+              <br />
+              {contactInfo.headingLine2}{' '}
+              <span className="text-[#c8ff00]">{contactInfo.headingAccent}</span>
             </h2>
-            <p className="text-sm text-[#555] leading-[1.8] mb-8">
-              Open to full-time roles, freelance projects, and interesting collabs. I reply within 24 hours.
-            </p>
+            <p className="text-sm text-[#555] leading-[1.8] mb-8">{contactInfo.description}</p>
             <div className="flex flex-col gap-3">
-              {links.map((l) => (
+              {contactInfo.links.map((l, i) => (
                 <a
-                  key={l.label}
+                  key={`${l.label}-${i}`}
                   href={l.href}
-                  target={l.href.startsWith('http') ? "_blank" : undefined}
-                  rel={l.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                  target={l.href.startsWith('http') ? '_blank' : undefined}
+                  rel={l.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                   className="flex items-center gap-4 text-sm text-white px-4 py-4 border border-[#1e1e1e] transition-all duration-300 hover:border-[#c8ff00] hover:text-[#c8ff00] no-underline"
                 >
                   <span className="w-5 text-center">{l.icon}</span>
@@ -152,15 +148,17 @@ export default function Contact() {
                   {formState.error}
                 </div>
               )}
-              
+
               {formState.submitted && (
                 <div className="bg-green-500/10 border border-green-500/20 text-green-400 px-4 py-3 text-sm rounded">
-                  Message sent successfully! I'll get back to you within 24 hours.
+                  Message sent successfully! I&apos;ll get back to you within 24 hours.
                 </div>
               )}
 
               <div className="flex flex-col gap-1.5">
-                <label className="text-[0.65rem] tracking-[0.15em] uppercase text-[#555]">Your Name</label>
+                <label className="text-[0.65rem] tracking-[0.15em] uppercase text-[#555]">
+                  Your Name
+                </label>
                 <input
                   type="text"
                   name="name"
@@ -172,7 +170,9 @@ export default function Contact() {
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-[0.65rem] tracking-[0.15em] uppercase text-[#555]">Email</label>
+                <label className="text-[0.65rem] tracking-[0.15em] uppercase text-[#555]">
+                  Email
+                </label>
                 <input
                   type="email"
                   name="email"
@@ -184,7 +184,9 @@ export default function Contact() {
                 />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="text-[0.65rem] tracking-[0.15em] uppercase text-[#555]">Message</label>
+                <label className="text-[0.65rem] tracking-[0.15em] uppercase text-[#555]">
+                  Message
+                </label>
                 <textarea
                   name="message"
                   value={formState.data.message}
@@ -201,12 +203,14 @@ export default function Contact() {
                 className={`mt-2 py-4 text-sm font-bold tracking-widest border-none transition-all duration-200 cursor-none hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(200,255,0,0.2)] ${
                   formState.isSubmitting
                     ? 'bg-[#666] text-[#999] cursor-not-allowed'
-                    : formState.submitted
-                    ? 'bg-[#c8ff00] text-[#080808]'
                     : 'bg-[#c8ff00] text-[#080808]'
                 }`}
               >
-                {formState.isSubmitting ? 'Sending...' : formState.submitted ? 'Sent! ✓' : 'Send Message →'}
+                {formState.isSubmitting
+                  ? 'Sending...'
+                  : formState.submitted
+                  ? 'Sent! ✓'
+                  : 'Send Message →'}
               </button>
             </form>
           </ScrollReveal>

@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import type { HeroInfo, MetricItem } from '@/lib/portfolio'
 
-const stats = [
-  { num: 13, label: 'Projects' },
-  { num: 3, label: 'Years Exp.' },
-  { num: 3, label: 'Clients' },
-]
+interface HeroProps {
+  metrics: MetricItem[]
+  heroInfo: HeroInfo
+}
 
 function countUp(el: HTMLSpanElement, target: number, duration = 1500) {
   let start = 0
@@ -20,16 +20,19 @@ function countUp(el: HTMLSpanElement, target: number, duration = 1500) {
   requestAnimationFrame(step)
 }
 
-export default function Hero() {
+export default function Hero({ metrics, heroInfo }: HeroProps) {
   const statRefs = useRef<(HTMLSpanElement | null)[]>([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry, i) => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const el = statRefs.current[i]
-            if (el) countUp(el, stats[i].num)
+            const indexAttr = entry.target.getAttribute('data-metric-index')
+            const idx = indexAttr ? parseInt(indexAttr, 10) : -1
+            if (idx >= 0 && metrics[idx]) {
+              countUp(entry.target as HTMLSpanElement, metrics[idx].num)
+            }
             observer.unobserve(entry.target)
           }
         })
@@ -42,7 +45,7 @@ export default function Hero() {
     })
 
     return () => observer.disconnect()
-  }, [])
+  }, [metrics])
 
   const scrollTo = (id: string) =>
     document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -56,21 +59,25 @@ export default function Hero() {
         {/* Tag */}
         <div className="fade-up delay-1 inline-flex items-center gap-2 bg-[rgba(200,255,0,0.08)] border border-[rgba(200,255,0,0.2)] px-4 py-1.5 text-[0.7rem] tracking-[0.15em] uppercase text-[#c8ff00] mb-8">
           <span className="pulse-dot w-1.5 h-1.5 rounded-full bg-[#c8ff00]" />
-          Available for work — 2026
+          {heroInfo.badge}
         </div>
 
         {/* Title */}
         <h1 className="font-[family-name:var(--font-display)] text-[clamp(4rem,10vw,9rem)] font-extrabold leading-[0.9] tracking-[-0.04em] mb-10">
-          <div className="line-wrap"><span className="line-reveal delay-2 relative">
-            Pangki
-          </span></div>
-          <div className="line-wrap"><span className="line-reveal delay-3">Full Stack</span></div>
-          <div className="line-wrap"><span className="line-reveal delay-5 text-[#c8ff00]">Dev.</span></div>
+          <div className="line-wrap">
+            <span className="line-reveal delay-2 relative">{heroInfo.titleLine1}</span>
+          </div>
+          <div className="line-wrap">
+            <span className="line-reveal delay-3">{heroInfo.titleLine2}</span>
+          </div>
+          <div className="line-wrap">
+            <span className="line-reveal delay-5 text-[#c8ff00]">{heroInfo.titleLine3Accent}</span>
+          </div>
         </h1>
 
         {/* Sub */}
         <p className="fade-up delay-4 max-w-lg text-[#555] text-sm leading-[1.8] mb-12">
-          Hi, I'm Jeep — a Year 2 CS student at Khon Kaen University who loves building things for the web. I work across the full stack . I'm currently open for freelance and internship opportunities.
+          {heroInfo.bio}
         </p>
 
         {/* Actions */}
@@ -92,12 +99,21 @@ export default function Hero() {
 
       {/* Stats */}
       <div className="fade-up delay-6 hidden lg:flex absolute top-1/2 right-12 -translate-y-1/2 flex-col gap-8">
-        {stats.map((s, i) => (
-          <div key={s.label} className="text-right">
+        {metrics.map((s, i) => (
+          <div key={s.id || s.label} className="text-right">
             <div className="font-[family-name:var(--font-display)] text-[2.5rem] font-extrabold leading-none">
-              <span ref={(el) => { statRefs.current[i] = el }}>0</span>
+              <span
+                data-metric-index={i}
+                ref={(el) => {
+                  statRefs.current[i] = el
+                }}
+              >
+                0
+              </span>
             </div>
-            <div className="text-[0.65rem] tracking-[0.15em] uppercase text-[#555] mt-1">{s.label}</div>
+            <div className="text-[0.65rem] tracking-[0.15em] uppercase text-[#555] mt-1">
+              {s.label}
+            </div>
           </div>
         ))}
       </div>
@@ -105,7 +121,9 @@ export default function Hero() {
       {/* Scroll indicator */}
       <div className="fade-up delay-6 absolute bottom-12 right-12 flex flex-col items-center gap-2">
         <div className="scroll-line-anim w-px h-16 bg-gradient-to-b from-[#c8ff00] to-transparent" />
-        <span className="text-[0.65rem] tracking-[0.2em] uppercase text-[#555] [writing-mode:vertical-rl]">Scroll</span>
+        <span className="text-[0.65rem] tracking-[0.2em] uppercase text-[#555] [writing-mode:vertical-rl]">
+          Scroll
+        </span>
       </div>
     </section>
   )

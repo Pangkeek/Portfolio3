@@ -205,3 +205,20 @@ a, button {
 .project-item:hover::after {
   width: 100%;
 }
+
+/* Restore ergonomic OS cursor inside /admin */
+.admin-cursor,
+.admin-cursor * {
+  cursor: auto !important;
+}
+
+.admin-cursor button,
+.admin-cursor a,
+.admin-cursor [role="button"] {
+  cursor: pointer !important;
+}
+
+.admin-cursor input,
+.admin-cursor textarea {
+  cursor: text !important;
+}

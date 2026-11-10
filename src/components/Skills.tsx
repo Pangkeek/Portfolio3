@@ -1,45 +1,11 @@
 import ScrollReveal from './ScrollReveal'
+import type { SkillItem } from '@/lib/portfolio'
 
-const skills = [
-  {
-    icon: '⬡',
-    name: 'Frontend Engineering',
-    desc: 'Building responsive, accessible UIs with React and Next.js. Crafting smooth interactions with Framer, styling with TailwindCSS, and visualizing data with Chart.js.',
-    tags: ['React', 'Next.js', 'JavaScript', 'TypeScript', 'TailwindCSS', 'Framer', 'chart.js'],
-  },
-  {
-    icon: '◈',
-    name: 'Backend Systems',
-    desc: 'Building RESTful APIs with Node.js and Express, managing relational data through Prisma, and handling document-based storage with Mongoose.',
-    tags: ['Node.js', 'Express', 'Prisma', 'Mongoose'],
-  },
-  {
-    icon: '⬢',
-    name: 'Data & Databases',
-    desc: 'Schema design and query optimization with PostgreSQL for relational data, and MongoDB for flexible, document-oriented storage.',
-    tags: ['PostgreSQL', 'MongoDB'],
-  },
-  {
-    icon: '◎',
-    name: 'DevOps & Cloud',
-    desc: 'Automating workflows with GitHub Actions, hosting static sites on GitHub Pages, deploying frontends on Vercel, and running backend services on Railway.',
-    tags: ['Github actions', 'Github pages', 'Vercel', 'Railway'],
-  },
-  {
-    icon: '⬟',
-    name: 'Testing & Quality',
-    desc: 'Maintaining clean, consistent codebases with ESLint for static analysis and Prettier for unified formatting across every project.',
-    tags: ['ESLint', 'Prettier'],
-  },
-  {
-    icon: '◇',
-    name: 'Data Science & Machine Learning',
-    desc: 'Analyzing and manipulating data with Pandas and NumPy, building and training models with Scikit-learn, TensorFlow, and PyTorch.',
-    tags: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'TensorFlow', 'PyTorch'],
-  },
-]
+interface SkillsProps {
+  skills: SkillItem[]
+}
 
-export default function Skills() {
+export default function Skills({ skills }: SkillsProps) {
   return (
     <section id="skills" className="py-24 px-12 max-w-screen-xl mx-auto">
       <ScrollReveal>
@@ -56,7 +22,7 @@ export default function Skills() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#1e1e1e] border border-[#1e1e1e]">
         {skills.map((skill, i) => (
-          <ScrollReveal key={skill.name} delay={((i % 3) + 1) as 1 | 2 | 3}>
+          <ScrollReveal key={`${skill.name}-${i}`} delay={((i % 3) + 1) as 1 | 2 | 3}>
             <div className="skill-card relative bg-[#080808] p-8 transition-colors duration-300 hover:bg-[#111] group h-full">
               <div className="text-2xl mb-4">{skill.icon}</div>
               <div className="font-[family-name:var(--font-display)] text-lg font-bold mb-2">{skill.name}</div>
